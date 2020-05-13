@@ -1,0 +1,26 @@
+{
+  "name": "mars",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Gulpfile.js",
+  "scripts": {
+    "build": "gulp build-prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marselgray/mars.git"
+  },
+  "author": "Marsel Gray",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-notify": "^3.2.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marselgray/mars/issues"
+  },
+  "homepage": "https://github.com/marselgray/mars#readme"
+}
