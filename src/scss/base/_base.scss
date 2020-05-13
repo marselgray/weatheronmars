@@ -43,11 +43,13 @@
 
 html{
 	font-size: 62.5%;
+	overflow: hidden;
 }
 
 
 body{
 	box-sizing: border-box;
+	overflow: hidden;
 }
 
 a{
@@ -57,4 +59,17 @@ a{
 
 img{
 	width: 100%;
+}
+
+
+@font-face {
+	font-family: 'agency';
+	src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/62921/agency_fb-2.eot'); /* IE9 Compat Modes */
+	src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/62921/agency_fb-2.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		 url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/62921/agency_fb-2.woff') format('woff'), /* Modern Browsers */
+		 url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/62921/agency_fb-2.ttf')  format('truetype'), /* Safari, Android, iOS */
+		 url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/62921/agency_fb-2.svg#7adfd2e465e5a5494cfebbc2416928d9') format('svg'); /* Legacy iOS */
+		 
+	font-style:   normal;
+	font-weight:  400;
 }
