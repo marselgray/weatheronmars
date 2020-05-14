@@ -6,3 +6,44 @@
 	  transform: translate(-50%, 0)rotate(360deg);
 	}
 }
+
+
+
+
+#loader {
+	width: 25rem;
+	height: 5rem;
+	line-height: 5rem;
+	text-align: center;
+	position: relative;
+	text-transform: uppercase;
+	font-weight: 900;
+	color: #fff;
+	letter-spacing: 0.5rem;
+	font-size: 2rem;
+	margin: 0 auto;
+	
+	&::before, &::after {
+	  content: "";
+	  display: block;
+	  width: 1.5rem;
+	  height: 1.5rem;
+	  background: #fff;
+	  position: absolute;
+	  animation: load .7s infinite alternate ease-in-out;
+	}
+	
+	&::before {
+	  top: 0;
+	}
+	
+	&::after {
+	  bottom: 0;
+	}
+  }
+  
+@keyframes load {
+	0% { left: 0; height: 3rem; width: 1.5rem }
+	50% { height: 8px; width: 4rem }
+	100% { left: 23.5rem; height: 3rem; width: 1.5rem}
+}

@@ -90,6 +90,9 @@ setTimeout(function(){
 	// get current season
 	document.getElementById('season').innerHTML = `The current season at Elysium Planita is <span class="season">${mars[6]['Season']}</span>.`
 
+
+	reveal();
+
 }, 1000)
 
 
@@ -97,4 +100,19 @@ setTimeout(function(){
 // converts Fahrenheit to Centigrade
 function fToC(F){
 	return (5/9) * (F - 32);
+}
+
+
+function reveal(){
+
+	setTimeout(function(){
+		console.log('reveal ran');
+
+		document.getElementById('loader').style.display = 'none';
+		document.getElementById('season').style.opacity = '1';
+		document.getElementById('sol--current').style.opacity = '1';
+		document.getElementById('week').style.opacity = '1';
+	}, 2000)
+
+
 }
