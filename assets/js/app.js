@@ -1,8 +1,6 @@
 var nasa;
 var key = 'ZYvidubAwlzYOV5HLowtSrbikugpv1n5LeeugzxK';
-
 var months = ["Jan.","Feb.","Mar.","Apr.","May","Jun.","Jul.","Aug.","Sept.","Oct.","Nov.","Dec."];
-
 
 const url = `https://api.nasa.gov/insight_weather/?api_key=${key}&feedtype=json&ver=1.0`;
 
