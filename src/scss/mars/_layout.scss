@@ -12,10 +12,6 @@ h1{
 
 p{
 	font-size: 1.8rem;
-
-	@include breakpoint(medium){
-		font-size: 2rem;
-	}
 }
 
 .container{
@@ -38,6 +34,7 @@ p{
 
 	&--text{
 		margin: 1.75rem 0;
+		font-size: 2rem;
 	}
 
 	&--mars{
