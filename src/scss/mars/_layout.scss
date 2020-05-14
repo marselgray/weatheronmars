@@ -43,9 +43,18 @@ p{
 	&--mars{
 		display: block;
 		position: absolute;
-		top: 50%;
+		top: 80%;
 		left: 50%;
 		animation: mars 360s infinite linear;
+		width: 90vw;
+
+		@include breakpoint(medium){
+			top: 65%;
+		}
+
+		@include breakpoint(large){
+			top: 50%;
+		}
 	}
 }
 

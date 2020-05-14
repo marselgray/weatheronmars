@@ -9,7 +9,7 @@ const url = `https://api.nasa.gov/insight_weather/?api_key=${key}&feedtype=json&
 fetch(url)
 	.then(res => res.json())
 	.then(data => nasa = data)
-	.then(() => console.log(nasa))
+	// .then(() => console.log(nasa))
 
 
 setTimeout(function(){
@@ -106,8 +106,6 @@ function fToC(F){
 function reveal(){
 
 	setTimeout(function(){
-		console.log('reveal ran');
-
 		document.getElementById('loader').style.display = 'none';
 		document.getElementById('season').style.opacity = '1';
 		document.getElementById('sol--current').style.opacity = '1';
