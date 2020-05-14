@@ -29,9 +29,6 @@ setTimeout(function(){
 		mars.push(day);
 	}
 
-	console.log(mars);
-
-
 	// add the Sol day number
 	const solHTML = document.getElementsByClassName('sol--mars');
 	for(let i = 0; i < solHTML.length; i++) {
@@ -81,7 +78,6 @@ setTimeout(function(){
 		pressure[i].innerHTML = `Pressure: ${atmosphericP} Pa`;
 	}
 
-
 	// current data
 	const current = document.getElementById('sol--current');
 	current.innerHTML = `
@@ -90,6 +86,9 @@ setTimeout(function(){
 		<p class="sol--current__text" id="sol--current__earth">${document.getElementsByClassName('sol--earth')[6].innerText}</p>
 		<p class="sol--current__text" id="sol--current__low">${document.getElementsByClassName('temp--low')[6].innerText}</p>
 	`;
+
+	// get current season
+	document.getElementById('season').innerHTML = `The current season at Elysium Planita is <span class="season">${mars[6]['Season']}</span>.`
 
 }, 1000)
 

@@ -48,3 +48,20 @@ p{
 		animation: mars 360s infinite linear;
 	}
 }
+
+
+.hide--large{
+	display: none;
+
+	@include breakpoint(large){
+		display: block;
+	}
+}
+
+.hide--small{
+	display: none;
+
+	@include breakpoint(medium){
+		display: block;
+	}
+}

@@ -1,17 +1,13 @@
 .sol{
 
 	&--container{
-		display: none;
+		display: flex;
 		justify-content: space-around;
 		z-index: 2;
 		text-align: center;
 		width: 100%;
 		position: absolute;
-		top: 80%;
-	
-		@include breakpoint(medium){
-			display: flex;
-		}
+		top: 75%;
 	}
 
 	&--mars{
@@ -41,4 +37,8 @@
 			}
 		}
 	}
+}
+
+.season{
+	text-transform: capitalize;
 }
