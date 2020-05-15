@@ -7,7 +7,7 @@ const url = `https://api.nasa.gov/insight_weather/?api_key=${key}&feedtype=json&
 fetch(url)
 	.then(res => res.json())
 	.then(data => nasa = data)
-	// .then(() => console.log(nasa))
+	//.then(() => console.log(nasa))
 
 
 setTimeout(function(){
@@ -45,35 +45,53 @@ setTimeout(function(){
 	// get temperature high
 	const tempHigh = document.getElementsByClassName('temp--high');
 	for(let i = 0; i < tempHigh.length; i++) {
-		let temp = mars[i]['AT']['mx'];
-		temp = fToC(temp);
-		temp = Math.round(temp);
-		tempHigh[i].innerHTML = `High: ${temp}<span>&#176;</span> C`;
+		if (mars[i]['AT']) {
+			let temp = mars[i]['AT']['mx'];
+			temp = fToC(temp);
+			temp = Math.round(temp);
+			tempHigh[i].innerHTML = `High: ${temp}<span>&#176;</span> C`;
+		} else {
+			tempHigh[i].innerHTML = `High: n/a`;
+		}
 	}
 
 	// get temperature low
 	const tempLow = document.getElementsByClassName('temp--low');
 	for(let i = 0; i < tempLow.length; i++) {
-		let temp = mars[i]['AT']['mn'];
-		temp = fToC(temp);
-		temp = Math.round(temp);
-		tempLow[i].innerHTML = `Low: ${temp}<span>&#176;</span> C`;
+		if (mars[i]['AT']) {
+			let temp = mars[i]['AT']['mn'];
+			temp = fToC(temp);
+			temp = Math.round(temp);
+			tempLow[i].innerHTML = `Low: ${temp}<span>&#176;</span> C`;
+		} else {
+			tempLow[i].innerHTML = `Low: n/a`;
+		}
 	}
 
 	// get average wind speed
 	const wind = document.getElementsByClassName('wind');
 	for(let i = 0; i < wind.length; i++) {
-		let windSpeed = mars[i]['HWS']['av'];
-		windSpeed = Math.round(windSpeed);
-		wind[i].innerHTML = `Wind Speed: ${windSpeed} m/s`;
+		if (mars[i]['HWS']) {
+			let windSpeed = mars[i]['HWS']['av'];
+			windSpeed = Math.round(windSpeed);
+			wind[i].innerHTML = `Wind Speed: ${windSpeed} m/s`;
+		} else {
+			wind[i].innerHTML = `Wind Speed: n/a`;
+		}
+
 	}
 
 	// get average atmospheric pressure
 	const pressure = document.getElementsByClassName('pressure');
 	for(let i = 0; i < pressure.length; i++) {
-		let atmosphericP = mars[i]['PRE']['av'];
-		atmosphericP = Math.round(atmosphericP);
-		pressure[i].innerHTML = `Pressure: ${atmosphericP} Pa`;
+		if (mars[i]['PRE']) {
+			let atmosphericP = mars[i]['PRE']['av'];
+			atmosphericP = Math.round(atmosphericP);
+			pressure[i].innerHTML = `Pressure: ${atmosphericP} Pa`;
+		} else {
+			pressure[i].innerHTML = `Pressure: n/a`;
+		}
+
 	}
 
 	// current data

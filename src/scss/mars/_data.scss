@@ -2,11 +2,9 @@
 
 	&--container{
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 		z-index: 2;
 		width: 100%;
-		position: absolute;
-		top: 75%;
 	}
 
 	&--mars{
@@ -23,10 +21,14 @@
 
 	&--current{
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(2, 15rem);
 		grid-template-rows: repeat(2, 1fr);
 		grid-column-gap: 1rem;
 		grid-row-gap: 1rem;
+
+		@include breakpoint(medium){
+			grid-template-columns: repeat(2, 20rem);
+		}
 
 		&__text{
 

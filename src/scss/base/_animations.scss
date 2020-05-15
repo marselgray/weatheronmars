@@ -21,16 +21,16 @@
 	color: #fff;
 	letter-spacing: 0.5rem;
 	font-size: 2rem;
-	margin: 0 auto;
+	margin: 5rem auto 0 auto;
 	
 	&::before, &::after {
-	  content: "";
-	  display: block;
-	  width: 1.5rem;
-	  height: 1.5rem;
-	  background: #fff;
-	  position: absolute;
-	  animation: load .7s infinite alternate ease-in-out;
+		content: "";
+		display: block;
+		width: 1.5rem;
+		height: 1.5rem;
+		background: #fff;
+		position: absolute;
+		animation: load .7s infinite alternate ease-in-out;
 	}
 	
 	&::before {
@@ -41,7 +41,7 @@
 	  bottom: 0;
 	}
   }
-  
+
 @keyframes load {
 	0% { left: 0; height: 3rem; width: 1.5rem }
 	50% { height: 8px; width: 4rem }
