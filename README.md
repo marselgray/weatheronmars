@@ -33,3 +33,9 @@ This API provides per-Sol summary data for each of the last seven available Sols
 This API is maintained and provided by NASA Jet Propulsion Laboratory and Cornell University. If you find bugs in this API, please use the contact form found [here](https://mars.nasa.gov/feedback/). The rate limit for this API is every hour no more than 2000 hits for each individual IP.
 
 [API Docs](https://api.nasa.gov/assets/insight/InSight%20Weather%20API%20Documentation.pdf)
+
+
+### December 2020 Update
+The API changed some information on how it was presented
+Since the same number of SOLs changes from time to time it's best to let the API tell you how many first and then sort information from there.
+Made the code more DRY also
