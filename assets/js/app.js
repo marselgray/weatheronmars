@@ -10,6 +10,7 @@ function loadData(){
 	var months = ["Jan.","Feb.","Mar.","Apr.","May","Jun.","Jul.","Aug.","Sept.","Oct.","Nov.","Dec."];
 	
 	const url = `https://api.nasa.gov/insight_weather/?api_key=${key}&feedtype=json&ver=1.0`;
+	const element = document.getElementById('week');
 
 	fetch(url)
 	.then(res => res.json())
@@ -24,94 +25,76 @@ function loadData(){
 		// sol day info
 		const mars = [];
 
+
 		for(let i = 0; i < sols.length; i++) {
 			solsDayNum.push(sols[i]);
 			const day = nasa[sols[i]];
 			mars.push(day);
 		}
 
-		// add the Sol day number
-		const solHTML = document.getElementsByClassName('sol--mars');
-		for(let i = 0; i < solHTML.length; i++) {
-			solHTML[i].innerText = `Sol: ${solsDayNum[i]}`;
-		}
 
-		// add the Earth day
-		const earthHTML = document.getElementsByClassName('sol--earth');
-		for(let i = 0; i < earthHTML.length; i++) {
-			let newDay = mars[i]['First_UTC'];
-			newDay = newDay.slice(0, 10);
-			newDay = new Date(newDay);
-			earthHTML[i].innerText = months[newDay.getMonth()] + ' ' + newDay.getDate();
-		}
+		for(let i = 0; i < solsDayNum.length; i++){
 
-		// get temperature high
-		const tempHigh = document.getElementsByClassName('temp--high');
-		for(let i = 0; i < tempHigh.length; i++) {
-			if (mars[i]['AT']) {
-				let temp = mars[i]['AT']['mx'];
-				temp = fToC(temp);
-				temp = Math.round(temp);
-				tempHigh[i].innerHTML = `High: ${temp}<span>&#176;</span> C`;
+			//add Earth Day
+			let earthDay = mars[i]['First_UTC'];
+			earthDay = earthDay.slice(0, 10);
+			earthDay = new Date(earthDay);
+			earthDay = months[earthDay.getMonth()] + ' ' + earthDay.getDate();
+
+
+			// get temperature high
+			let tempHigh;
+			if (mars[i]['PRE']['mx']) {
+				tempHigh = mars[i]['PRE']['mx'];
+				tempHigh = fToC(tempHigh);
+				tempHigh = Math.round(tempHigh);
+				tempHigh = `High: ${tempHigh}<span>&#176;</span> C`;
 			} else {
-				tempHigh[i].innerHTML = `High: n/a`;
+				tempHigh = `High: n/a`;
 			}
-		}
 
-		// get temperature low
-		const tempLow = document.getElementsByClassName('temp--low');
-		for(let i = 0; i < tempLow.length; i++) {
-			if (mars[i]['AT']) {
-				let temp = mars[i]['AT']['mn'];
-				temp = fToC(temp);
-				temp = Math.round(temp);
-				tempLow[i].innerHTML = `Low: ${temp}<span>&#176;</span> C`;
+
+			// get temperature low
+			let tempLow;
+			if (mars[i]['PRE']['mn']) {
+				tempLow = mars[i]['PRE']['mn'];
+				tempLow = fToC(tempLow);
+				tempLow = Math.round(tempLow);
+				tempLow = `Low: ${tempLow}<span>&#176;</span> C`;
 			} else {
-				tempLow[i].innerHTML = `Low: n/a`;
+				tempLow = `Low: n/a`;
 			}
-		}
 
-		// get average wind speed
-		const wind = document.getElementsByClassName('wind');
-		for(let i = 0; i < wind.length; i++) {
-			if (mars[i]['HWS']) {
-				let windSpeed = mars[i]['HWS']['av'];
+
+			// get average wind speed
+			let windSpeed;
+			if (mars[i]['PRE']['av']) {
+				windSpeed = mars[i]['PRE']['av'];
 				windSpeed = Math.round(windSpeed);
-				wind[i].innerHTML = `Wind Speed: ${windSpeed} m/s`;
+				windSpeed = `Wind Speed: ${windSpeed} m/s`;
 			} else {
-				wind[i].innerHTML = `Wind Speed: n/a`;
+				windSpeed = `Wind Speed: n/a`;
 			}
 
+
+			// join information
+			let dataInformation = `
+				<div class="sol hide--large">
+					<p class="sol--text sol--mars">Sol: ${solsDayNum[i]}</p>
+					<p class="sol--text sol--earth">${earthDay}</p>
+					<p class="sol--text temp--high">${tempHigh}</p>
+					<p class="sol--text temp--low">${tempLow}</p>
+					<p class="sol--text wind">${windSpeed}</p>
+				</div>`;
+
+			element.insertAdjacentHTML('beforeend', dataInformation);
 		}
-
-		// get average atmospheric pressure
-		const pressure = document.getElementsByClassName('pressure');
-		for(let i = 0; i < pressure.length; i++) {
-			if (mars[i]['PRE']) {
-				let atmosphericP = mars[i]['PRE']['av'];
-				atmosphericP = Math.round(atmosphericP);
-				pressure[i].innerHTML = `Pressure: ${atmosphericP} Pa`;
-			} else {
-				pressure[i].innerHTML = `Pressure: n/a`;
-			}
-
-		}
-
-		// current data
-		const current = document.getElementById('sol--current');
-		current.innerHTML = `
-			<p class="sol--current__text" id="sol--current__mars">${document.getElementsByClassName('sol--mars')[6].innerText}</p>
-			<p class="sol--current__text" id="sol--current__high">${document.getElementsByClassName('temp--high')[6].innerText}</p>
-			<p class="sol--current__text" id="sol--current__earth">${document.getElementsByClassName('sol--earth')[6].innerText}</p>
-			<p class="sol--current__text" id="sol--current__low">${document.getElementsByClassName('temp--low')[6].innerText}</p>
-		`;
 
 		// get current season
-		document.getElementById('season').innerHTML = `The current season at Elysium Planita is <span class="season">${mars[6]['Season']}</span>.`
+		const last = solsDayNum.length - 1;
+		document.getElementById('season').innerHTML = `The current season at Elysium Planita is <span class="season">${mars[last]['Season']}</span>.`
 	})
 }
-
-
 
 
 // converts Fahrenheit to Centigrade
@@ -124,7 +107,6 @@ function reveal(){
 	setTimeout(function(){
 		document.getElementById('loader').style.display = 'none';
 		document.getElementById('season').style.opacity = '1';
-		document.getElementById('sol--current').style.opacity = '1';
 		document.getElementById('week').style.opacity = '1';
 	}, 2000)
 }
