@@ -55,7 +55,7 @@ p{
 }
 
 
-.hide--large{
+.hide--data:nth-of-type(odd){
 	display: none;
 
 	@include breakpoint(large){
@@ -63,7 +63,7 @@ p{
 	}
 }
 
-.hide--small{
+.hide--data:nth-of-type(even){
 	display: none;
 
 	@include breakpoint(medium){

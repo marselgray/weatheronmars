@@ -84,7 +84,7 @@ function loadData(){
 
 			// join information
 			let dataInformation = `
-				<div class="sol hide--large">
+				<div class="sol hide--data">
 					<p class="sol--text sol--mars">Sol: ${solsDayNum[i]}</p>
 					<p class="sol--text sol--earth">${earthDay}</p>
 					<p class="sol--text temp--high">${tempHigh}</p>
