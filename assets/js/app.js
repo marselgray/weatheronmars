@@ -37,6 +37,8 @@ function loadData(){
 			mars.push(day);
 		}
 
+		console.log(nasa);
+
 
 		for(let i = 0; i < solsDayNum.length; i++){
 
@@ -49,7 +51,7 @@ function loadData(){
 
 			// get temperature high
 			let tempHigh;
-			if (mars[i]['PRE']['mx']) {
+			if (mars[i]['AT']) {
 				tempHigh = mars[i]['PRE']['mx'];
 				tempHigh = fToC(tempHigh);
 				tempHigh = Math.round(tempHigh);
@@ -61,7 +63,7 @@ function loadData(){
 
 			// get temperature low
 			let tempLow;
-			if (mars[i]['PRE']['mn']) {
+			if (mars[i]['AT']) {
 				tempLow = mars[i]['PRE']['mn'];
 				tempLow = fToC(tempLow);
 				tempLow = Math.round(tempLow);
@@ -73,12 +75,23 @@ function loadData(){
 
 			// get average wind speed
 			let windSpeed;
-			if (mars[i]['PRE']['av']) {
-				windSpeed = mars[i]['PRE']['av'];
+			if (mars[i]['HWS']) {
+				windSpeed = mars[i]['HWS']['av'];
 				windSpeed = Math.round(windSpeed);
 				windSpeed = `Wind Speed: ${windSpeed} m/s`;
 			} else {
 				windSpeed = `Wind Speed: n/a`;
+			}
+
+
+			// get average atmosphere pressure
+			let pressure;
+			if (mars[i]['PRE']) {
+				pressure = mars[i]['PRE']['av'];
+				pressure = Math.round(pressure);
+				pressure = `Pressure: ${pressure} Pa`;
+			} else {
+				pressure = `Pressure: n/a`;
 			}
 
 
@@ -90,6 +103,7 @@ function loadData(){
 					<p class="sol--text temp--high">${tempHigh}</p>
 					<p class="sol--text temp--low">${tempLow}</p>
 					<p class="sol--text wind">${windSpeed}</p>
+					<p class="sol--text pressure">${pressure}</p>
 				</div>`;
 
 			element.insertAdjacentHTML('beforeend', dataInformation);
