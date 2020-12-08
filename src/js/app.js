@@ -26,6 +26,11 @@ function loadData(){
 		const mars = [];
 
 
+		/*
+		you dont always get the same amount of days from the api
+		best to let it say how many days of information it has first
+		and build the amount from there
+		*/
 		for(let i = 0; i < sols.length; i++) {
 			solsDayNum.push(sols[i]);
 			const day = nasa[sols[i]];
@@ -92,7 +97,14 @@ function loadData(){
 
 		// get current season and final information
 		const last = solsDayNum.length - 1;
-		document.getElementById('season').innerHTML = `The current season at Elysium Planita is <span class="season">${mars[last]['Season']}</span>.`
+		document.getElementById('season').innerHTML = `The current season at Elysium Planita is <span class="season">${mars[last]['Season']}</span>.`;
+
+		for(let i = 0; i < solsDayNum.length; i++){
+			document.getElementById('sol--current__mars').innerText = document.getElementsByClassName('sol--mars')[last].innerText;
+			document.getElementById('sol--current__high').innerText = document.getElementsByClassName('temp--high')[last].innerText;
+			document.getElementById('sol--current__earth').innerText = document.getElementsByClassName('sol--earth')[last].innerText;
+			document.getElementById('sol--current__low').innerText = document.getElementsByClassName('temp--low')[last].innerText;
+		}
 	})
 }
 
