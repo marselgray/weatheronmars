@@ -111,7 +111,7 @@ function loadData(){
 
 		// get current season and final information
 		const last = solsDayNum.length - 1;
-		document.getElementById('season').innerHTML = `The current season at Elysium Planita is <span class="season">${mars[last]['Season']}</span>.`;
+		// document.getElementById('season').innerHTML = `The current season at Elysium Planita is <span class="season">${mars[last]['Season']}</span>.`;
 
 		for(let i = 0; i < solsDayNum.length; i++){
 			document.getElementById('sol--current__mars').innerText = document.getElementsByClassName('sol--mars')[last].innerText;
